@@ -1,5 +1,5 @@
 const express = require("express");
-const scrape = require("./mangaScaper.js");
+const scrape = require("./mangaScraper.js");
 
 const app = express();
 
