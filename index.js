@@ -9,10 +9,6 @@ app.get("/", function (req, res) {
 
 scrape();
 
-app.get("/listMangas", function(req, res) {
-    res.send(scrape())
-})
-
 app.listen(3001, function () {
   console.log('Server running on port 3000');
 });
