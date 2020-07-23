@@ -1,0 +1,14 @@
+manga {
+  the-ghostly-doctor { // manga slug 
+    chapter 1-182
+    1,
+    2,
+    3,
+    4,
+    5,
+    usw... {
+      img1-whatever
+    }
+  }
+}
+
