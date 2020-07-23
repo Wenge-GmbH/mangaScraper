@@ -1,9 +1,9 @@
-const express = require("express");
-const scrape = require("./mangaScaper.js");
+const express = require('express');
+const scrape = require('./scraper');
 
 const app = express();
 
-app.get("/", function (req, res) {
+app.get('/', function (req, res) {
   res.send('Hello World');
 });
 
