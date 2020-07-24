@@ -14,7 +14,7 @@ const scrape = async () => {
 };
 
 const scrapeGeneralData = async (url) => {
-  const browser = await puppeteer.launch({ headless: false });
+  const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
   await page.goto(url);
 

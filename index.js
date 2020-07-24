@@ -1,6 +1,6 @@
-const express = require('express');
-const scrape = require('./scraper');
-// const scrape = require("./mangaScraper.js");
+import 'dotenv/config';
+import express from 'express';
+import scrape from './scraper';
 
 const app = express();
 
