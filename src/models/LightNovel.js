@@ -5,12 +5,13 @@ const lightNovelSchema = new mongoose.Schema({
   author: String,
   status: String,
   coverLink: String, //readmanhua
-  summary: Number,
+  summary: String,
   categories: [String],
   tags: [String],
   scrapingFrom: String, // supportedPages -> e.g. (lightnovelworld)
   lastChap: String, // last scraped Chapter
   nextChap: String,
+  chapterCount: Number,
   chapter: [
     {
       date: { type: Date, default: Date.now },

@@ -10,11 +10,11 @@ const mangaSchema = new mongoose.Schema({
     {
       chaplerone: Number, // id -> chapter >182< <-- this
       images: [
-        String //s
-      ]
-    }
-  ]
+        String, //s
+      ],
+    },
+  ],
 });
 
-const Feed = mongoose.model('Feed', feedSchema);
+const Feed = mongoose.model('Feed', mangaSchema);
 module.exports = Feed;
