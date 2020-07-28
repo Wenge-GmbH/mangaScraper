@@ -3,13 +3,13 @@ import puppeteer from 'puppeteer';
 import novelSites from './sites';
 import LightNovel from '../models/LightNovel';
 
-const supportedPages = ['lightnovelworld'];
+export const supportedPages = ['lightnovelworld'];
 
 // select page
 // selected -> getUrls
 // loop and use scrape data gedöns
 // use next button till the end
-const scrape = async ({ scrapingFrom, url }) => {
+export const scrape = async ({ scrapingFrom, url }) => {
   if (supportedPages.indexOf(scrapingFrom) === -1) return 'Page not supported';
   const scraper = novelSites[scrapingFrom];
   const generalData = await scrapeGeneralData({ url, scraper });
@@ -36,7 +36,7 @@ const scrape = async ({ scrapingFrom, url }) => {
   });
 };
 
-const scrapeGeneralData = async ({ url, scraper }) => {
+export const scrapeGeneralData = async ({ url, scraper }) => {
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
   await page.goto(url);
@@ -49,7 +49,7 @@ const scrapeGeneralData = async ({ url, scraper }) => {
   return generalData;
 };
 
-const scrapeChapters = async ({ firstChapter, scraper, novel }) => {
+export const scrapeChapters = async ({ firstChapter, scraper, novel }) => {
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
   await page.goto(firstChapter);
@@ -93,4 +93,3 @@ const scrapeChapters = async ({ firstChapter, scraper, novel }) => {
     console.log(e);
   }
 };
-module.exports = scrape;

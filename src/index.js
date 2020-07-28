@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import Koa from 'koa';
-import scrape from './scraper';
+import { scrape } from './scraper';
 import Router from 'koa-router';
 
 import initMiddleware from './middleware';
