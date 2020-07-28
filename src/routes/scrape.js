@@ -21,8 +21,10 @@ export default ({ router }) => {
 
   router.post('/novels', async (ctx) => {
     const { site, url } = ctx.request.body;
-    await scrape({ scrapingFrom: site, url });
-
     ctx.body = { site, url };
+
+    scrape({ scrapingFrom: site, url }).then((e) => {
+      console.log(e);
+    });
   });
 };
