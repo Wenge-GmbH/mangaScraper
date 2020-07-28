@@ -4,7 +4,7 @@ export default async (page) => {
     const nextChap = document.querySelector('.nextchap');
     const content = document
       .querySelector('.chapter-content')
-      .innerHTML.split(`<br>`);
+      .innerText.split(`\n`);
     return {
       title,
       content,

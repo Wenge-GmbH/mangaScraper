@@ -4,7 +4,7 @@ const lightNovelSchema = new mongoose.Schema({
   title: String,
   author: String,
   status: String,
-  coverLink: String, //readmanhua
+  coverImg: String, //readmanhua
   summary: String,
   categories: [String],
   tags: [String],
@@ -12,14 +12,19 @@ const lightNovelSchema = new mongoose.Schema({
   lastChap: String, // last scraped Chapter
   nextChap: String,
   chapterCount: Number,
-  chapter: [
+  chapters: [
     {
       date: { type: Date, default: Date.now },
       title: String,
-      chapter: Number, // id -> chapter >182< <-- this
+      chapter: String, // id -> chapter >182< <-- this
       content: Array,
     },
   ],
+});
+
+lightNovelSchema.pre('validate', function (next) {
+  this.chapterCount = this.chapters.length;
+  next();
 });
 
 const LightNovel = mongoose.model('LightNovel', lightNovelSchema);
