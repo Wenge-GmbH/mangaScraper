@@ -1,10 +1,9 @@
 import mongoose from 'mongoose';
 
-export default ({ app }) => {
+export default async ({ app }) => {
   const db = mongoose.connection;
   app.context.db = db;
-
-  mongoose.connect(
+  await mongoose.connect(
     process.env.DB_URL,
     {
       useNewUrlParser: true,
