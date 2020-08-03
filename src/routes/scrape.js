@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import LightNovel from '../models/LightNovel';
 import { supportedPages, scrape } from '../scraper';
 
-// prefix: "/novels"
+// prefix: "/scrape"
 export default ({ router }) => {
   router.get('/', async (ctx) => {
     ctx.body = {
