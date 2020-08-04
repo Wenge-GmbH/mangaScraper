@@ -1,7 +1,7 @@
-const passport = require('koa-passport');
-const LocalStrategy = require('passport-local').Strategy;
-var JwtStrategy = require('passport-jwt').Strategy;
-var ExtractJwt = require('passport-jwt').ExtractJwt;
+import passport from 'koa-passport';
+import { Strategy as LocalStrategy } from 'passport-local';
+import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt';
+import User from '../models/User';
 
 const fetchUser = (() => {
   const user = { id: 123456789, username: 'test', password: 'test' };
@@ -23,18 +23,29 @@ passport.deserializeUser(async function (id, done) {
   }
 });
 
-const localLogin = new LocalStrategy((username, password, done) => {
-  fetchUser()
-    .then((user) => {
-      if (username === user.username && password === user.password) {
-        done(null, user);
-      } else {
-        done(null, false);
-      }
-    })
-    .catch((err) => {
-      done(err);
-    });
+const localLogin = new LocalStrategy(async (username, password, done) => {
+  try {
+    const user = await User.findOne({ username });
+    if (!user) return done(null, false);
+
+    const isMatch = await user.comparePassword(password);
+
+    if (!isMatch) return done(null, false);
+    return done(null, user);
+  } catch (e) {
+    return done(e);
+  }
+  // fetchUser()
+  //   .then((user) => {
+  //     if (username === user.username && password === user.password) {
+  //       done(null, user);
+  //     } else {
+  //       done(null, false);
+  //     }
+  //   })
+  //   .catch((err) => {
+  //     done(err);
+  //   });
 });
 
 const jwtOptions = {
