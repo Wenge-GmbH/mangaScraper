@@ -1,4 +1,4 @@
-var mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const mangaSchema = new mongoose.Schema({
   title: String,
@@ -17,4 +17,4 @@ const mangaSchema = new mongoose.Schema({
 });
 
 const Feed = mongoose.model('Feed', mangaSchema);
-module.exports = Feed;
+export default Feed;
