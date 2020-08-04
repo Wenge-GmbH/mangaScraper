@@ -35,17 +35,6 @@ const localLogin = new LocalStrategy(async (username, password, done) => {
   } catch (e) {
     return done(e);
   }
-  // fetchUser()
-  //   .then((user) => {
-  //     if (username === user.username && password === user.password) {
-  //       done(null, user);
-  //     } else {
-  //       done(null, false);
-  //     }
-  //   })
-  //   .catch((err) => {
-  //     done(err);
-  //   });
 });
 
 const jwtOptions = {
