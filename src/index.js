@@ -16,9 +16,7 @@ const app = new Koa();
   initMiddleware({ app });
 
   initAuth({ app });
-
   initRoutes({ app });
-
   initTestAgenda();
 
   const PORT = process.env.PORT || 3002;
