@@ -6,7 +6,7 @@ import initMiddleware from './middleware';
 import initDB from './db';
 import initRoutes from './routes';
 import { initAgenda } from './agenda';
-import initTestAgenda from './jobs/test';
+import initJobs from './jobs';
 import initAuth from './middleware/auth';
 
 const app = new Koa();
@@ -17,7 +17,6 @@ const app = new Koa();
 
   initAuth({ app });
   initRoutes({ app });
-  initTestAgenda();
 
   const PORT = process.env.PORT || 3002;
   app.listen(PORT, () => {
