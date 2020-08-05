@@ -45,7 +45,7 @@ export default ({ router }) => {
       );
       const content = await NovelChapter.findById(chapterId);
       console.log(content, chapterId);
-      ctx.body = { ...chapter._doc, content };
+      ctx.body = { ...chapter._doc.chapters[0], content: content._doc };
     } catch (e) {
       console.log(e);
       ctx.throw(404, 'chapter not found');
