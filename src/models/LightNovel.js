@@ -1,5 +1,11 @@
 import mongoose from 'mongoose';
 
+// helpfull link
+// https://stackoverflow.com/questions/29078753/how-to-reference-another-schema-in-my-mongoose-schema
+const novelChapterSchema = new mongoose.Schema({
+  content: Array,
+});
+
 const lightNovelSchema = new mongoose.Schema({
   title: String,
   author: String,
@@ -17,7 +23,7 @@ const lightNovelSchema = new mongoose.Schema({
       date: { type: Date, default: Date.now },
       title: String,
       chapter: String, // id -> chapter >182< <-- this
-      content: Array,
+      content: { type: mongoose.Schema.Types.ObjectId, ref: 'NovelChapter' },
     },
   ],
 });
@@ -27,5 +33,5 @@ lightNovelSchema.pre('validate', function (next) {
   next();
 });
 
-const LightNovel = mongoose.model('LightNovel', lightNovelSchema);
-export default LightNovel;
+export const NovelChapter = mongoose.model('NovelChapter', novelChapterSchema);
+export const LightNovel = mongoose.model('LightNovel', lightNovelSchema);

@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import LightNovel from '../models/LightNovel';
+import { LightNovel } from '../models/LightNovel';
 import { supportedPages, scrape } from '../scraper';
 
 // prefix: "/scrape"

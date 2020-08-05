@@ -1,8 +1,7 @@
 import puppeteer from 'puppeteer';
 
 import novelSites from './sites';
-import LightNovel from '../models/LightNovel';
-
+import { LightNovel, NovelChapter } from '../models/LightNovel';
 export const supportedPages = ['lightnovelworld'];
 
 // select page
@@ -13,14 +12,14 @@ export const scrape = async ({ scrapingFrom, url }) => {
   if (supportedPages.indexOf(scrapingFrom) === -1) return 'Page not supported';
   const scraper = novelSites[scrapingFrom];
   const generalData = await scrapeGeneralData({ url, scraper });
-  // console.log(generalData);
+  console.log(generalData);
 
   const novel = await LightNovel.findOne({ title: generalData.title });
   if (novel) return console.log('Novel alraedy in Database');
 
   let newNovel;
   try {
-    newNovel = new LightNovel(generalData);
+    newNovel = new LightNovel({ ...generalData, scrapingFrom });
     await newNovel.save();
     console.log(newNovel);
   } catch (e) {
@@ -65,20 +64,20 @@ export const scrapeChapters = async ({ firstChapter, scraper, novel }) => {
       const chapterNumber = scraper.getChapterNumberFromUrl(nextChap);
       const { title, content } = chapter;
 
+      const chapterContent = new NovelChapter({ content });
       const addThisToChapterArray = {
         title,
-        content,
         chapter: chapterNumber,
+        content: chapterContent,
       };
-
       novel.chapters.push(addThisToChapterArray);
 
-      const updateLightNovelWithThis = {};
       console.log(`${chapterNumber}: ${title}`, nextChap);
       novel.lastChap = nextChap;
       novel.nextChap = chapter.nextChap;
 
       try {
+        await chapterContent.save();
         await novel.save();
         nextChap = chapter.nextChap;
         count++;

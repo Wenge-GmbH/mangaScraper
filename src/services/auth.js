@@ -46,8 +46,8 @@ const jwtLogin = new JwtStrategy(jwtOptions, async (jwt_payload, done) => {
   console.log('payload received', jwt_payload);
 
   try {
-    const user = await fetchUser();
-    if (user.id !== jwt_payload.id) throw new Error('id not found');
+    const user = await User.findById(jwt_payload.id);
+    if (!user) throw new Error('id not found');
     done(null, user);
   } catch (err) {
     done(err);

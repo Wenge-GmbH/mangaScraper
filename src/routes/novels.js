@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import LightNovel from '../models/LightNovel';
+import { LightNovel, NovelChapter } from '../models/LightNovel';
 
 // prefix: "/novels"
 export default ({ router }) => {
@@ -24,7 +24,7 @@ export default ({ router }) => {
   router.get('/:id', async (ctx) => {
     const { id } = ctx.params;
     try {
-      const novel = await LightNovel.findById(id, '-chapters.content');
+      const novel = await LightNovel.findById(id); // , '-chapters.content'
       ctx.body = novel;
     } catch (e) {
       console.log(e);
@@ -39,11 +39,13 @@ export default ({ router }) => {
       const chapter = await LightNovel.findOne(
         {
           _id: id,
-          'chapters._id': chapterId,
+          'chapters.content': chapterId,
         },
         'chapters.$'
       );
-      ctx.body = chapter;
+      const content = await NovelChapter.findById(chapterId);
+      console.log(content, chapterId);
+      ctx.body = { ...chapter._doc, content };
     } catch (e) {
       console.log(e);
       ctx.throw(404, 'chapter not found');
