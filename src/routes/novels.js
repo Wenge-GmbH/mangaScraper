@@ -41,11 +41,22 @@ export default ({ router }) => {
           _id: id,
           'chapters.content': chapterId,
         },
-        'chapters.$'
-      );
-      const content = await NovelChapter.findById(chapterId);
-      console.log(content, chapterId);
-      ctx.body = { ...chapter._doc.chapters[0], content: content._doc };
+        'chapters.$ title'
+      )
+        .populate({
+          path: 'chapters',
+          populate: {
+            path: 'content',
+            model: 'NovelChapter',
+          },
+        })
+        .lean()
+        .exec();
+
+      ctx.body = {
+        title: chapter.title,
+        content: chapter.chapters[0],
+      };
     } catch (e) {
       console.log(e);
       ctx.throw(404, 'chapter not found');
