@@ -1,0 +1,78 @@
+// main: ../index.scss
+
+.primary {
+  color: $color-primary;
+}
+.primary-dark {
+  color: $color-primary-dark;
+}
+.primary-light {
+  color: $color-primary-light;
+}
+
+.secondary {
+  color: $color-secondary;
+}
+.secondary-dark {
+  color: $color-secondary-dark;
+}
+.secondary-light {
+  color: $color-secondary-light;
+}
+
+.tertiary {
+  color: $color-tertiary;
+}
+.tertiary-dark {
+  color: $color-tertiary-dark;
+}
+.tertiary-light {
+  color: $color-tertiary-light;
+}
+
+.bg-primary,
+.has-primary-background-color {
+  background-color: $color-primary;
+}
+.bg-primary-dark,
+.has-primary-dark-background-color {
+  background-color: $color-primary-dark;
+}
+.bg-primary-light {
+  background-color: $color-primary-light;
+}
+
+.bg-secondary {
+  background-color: $color-secondary;
+}
+.bg-secondary-dark {
+  background-color: $color-secondary-dark;
+}
+.bg-secondary-light {
+  background-color: $color-secondary-light;
+}
+
+.bg-tertiary {
+  background-color: $color-tertiary;
+}
+.bg-tertiary-dark {
+  background-color: $color-tertiary-dark;
+}
+.bg-tertiary-light {
+  background-color: $color-tertiary-light;
+}
+
+.bg-white {
+  background-color: #fff;
+}
+
+.white {
+  color: #fff;
+}
+
+.accent {
+  color: $color-accent;
+}
+.bg-accent {
+  background-color: $color-accent;
+}

@@ -1,0 +1,64 @@
+//main: ../index.scss
+
+.text-trenner {
+  &__vert,
+  &__hori {
+    &:before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: currentColor;
+    }
+  }
+  &__hori {
+    &:before {
+      right: 3px;
+      content: '-';
+      background-color: transparent;
+    }
+    &:last-of-type:before {
+      content: none;
+    }
+  }
+
+  &__vert {
+    padding-left: 12px;
+
+    &:before {
+      left: 0;
+      height: 75%;
+      width: 1px;
+    }
+  }
+}
+
+.title-trenner {
+  margin-bottom: 28px;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    background-color: $color-accent;
+    height: 2px;
+    width: 40px;
+  }
+
+  &-big {
+    @extend .title-trenner;
+    &:before {
+      height: 4px;
+      width: 70px;
+      background-color: currentColor;
+    }
+  }
+
+  &-center {
+    @extend .title-trenner;
+    &:before {
+      left: calc(50% - 20px);
+    }
+  }
+}

@@ -1,0 +1,146 @@
+// main: ../index.scss
+
+section {
+  padding: 3rem 16px;
+  overflow: hidden;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px;
+
+  &-small {
+    @extend .container;
+    max-width: 320px;
+  }
+  &-middle-small {
+    @extend .container;
+    max-width: 680px;
+  }
+  &-middle {
+    @extend .container;
+    max-width: 810px;
+  }
+  &-middle-big {
+    @extend .container;
+    max-width: 976px;
+  }
+  &-big {
+    @extend .container;
+    max-width: 1600px;
+    padding: 0;
+  }
+  &-fw,
+  &-fluid {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+  }
+}
+
+.fullScreenSection {
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+}
+
+.fixed {
+  position: fixed;
+}
+.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute;
+}
+
+.fw {
+  width: 100%;
+}
+.hw {
+  width: 50%;
+}
+.hh {
+  height: 50%;
+}
+.hh-v {
+  height: 50vh;
+}
+.fh {
+  height: 100%;
+}
+.fh-v {
+  height: 100vh;
+}
+
+.bg-img {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.bg-img-contain {
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.overflow-hidden {
+  overflow: hiddden;
+}
+.overflow-visible {
+  overflow: visible;
+}
+
+.ca {
+  position: absolute;
+  &-all {
+    @extend .ca;
+    top: 50%;
+    left: 50%;
+    @include translate(-50%, -50%);
+  }
+  &-y {
+    @extend .ca;
+    top: 50%;
+    @include translateY(-50%);
+  }
+  &-x {
+    @extend .ca;
+    left: 50%;
+    @include translateX(-50%);
+  }
+}
+
+.nop {
+  padding: 0 !important;
+}
+.nopr {
+  padding-right: 0 !important;
+}
+.nopl {
+  padding-left: 0 !important;
+}
+.nopb {
+  padding-bottom: 0 !important;
+}
+.nopt {
+  padding-top: 0 !important;
+}
+
+.nom {
+  margin: 0 !important;
+}
+.nomb {
+  margin-bottom: 0 !important;
+}
+.nomt {
+  margin-top: 0 !important;
+}
+.noml {
+  margin-left: 0 !important;
+}
+.nomr {
+  margin-right: 0 !important;
+}

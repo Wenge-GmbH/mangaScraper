@@ -1,0 +1,10 @@
+//main: ../index.scss
+
+.simple-hover {
+  transition: 0.25s ease-in-out;
+
+  &:hover {
+    color: $color-accent;
+    transition: 0.25s ease-in-out;
+  }
+}

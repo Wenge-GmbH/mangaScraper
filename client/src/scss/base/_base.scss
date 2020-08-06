@@ -1,0 +1,88 @@
+// main: ../index.scss
+
+html {
+  font-size: 16px;
+
+  @include respond-to($medium) {
+    font-size: calc(16px + 0.1vw);
+  }
+
+  @include respond-to($extra-large) {
+    font-size: 17px;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-size: $font-size;
+  color: $font-color-primary;
+  font-weight: $font-weight-primary;
+  line-height: $line-height-primary;
+  background-color: $color-secondary;
+  font-family: $font-primary;
+}
+
+* {
+  position: relative;
+  box-sizing: border-box;
+  outline: none;
+  margin: 0;
+  padding: 0;
+
+  &::before,
+  &::after {
+    transition: 0.3s;
+    box-sizing: border-box;
+  }
+}
+
+::selection {
+  color: $selection-color;
+  background-color: $color-accent;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.block {
+  display: block;
+}
+
+.none {
+  display: none;
+}
+
+.fh-v {
+  height: 100vh;
+}
+.fh-mv {
+  min-height: 100vh;
+}
+
+.bg-img {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.bg-img-contain {
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.uppercase {
+  text-transform: uppercase !important;
+}
+
+.svg-hidden {
+  position: fixed;
+  width: 0;
+  height: 0;
+  z-index: -1;
+}

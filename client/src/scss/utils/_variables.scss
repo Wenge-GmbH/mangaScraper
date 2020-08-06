@@ -1,0 +1,39 @@
+// main: ../index.scss
+
+// FONT STUFF
+$font-primary: 'Roboto', sans-serif;
+$font-secondary: 'Raleway', sans-serif;
+$font-tertiary: 'Raleway', sans-serif;
+
+$color-dark: #0e0e0e;
+$color-dark-2: #181818;
+
+$color-accent: #da2f2f;
+// $color-accent-light: #f1e4dd;
+// $color-accent-dark: #f1e4dd;
+
+$font-size: 0.95rem;
+$line-height-primary: 1.5;
+$font-weight-primary: 400;
+
+$font-color-primary: #3c3d41;
+$font-color-accent: #fff;
+
+// MAIN COLORS
+$color-primary: #3c3d41;
+$color-primary-dark: #1f1f1f;
+$color-primary-light: #535353;
+
+$color-secondary: #f6f4f2;
+$color-secondary-dark: #777; // 9a9a9a
+$color-secondary-light: #ddd;
+
+$color-tertiary: #cbcbcb;
+$color-tertiary-light: rgba(255, 255, 255, 0.5);
+$color-tertiary-dark: rgba(255, 255, 255, 0.75);
+
+$success: darkgreen;
+$error: rgb(255, 64, 64);
+
+$selection-color: $font-color-accent;
+$selection-bg-COLOR: $color-accent;
