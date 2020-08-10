@@ -19,7 +19,7 @@ export default ({ app }) => {
 
   // every rote below this is jwt authenticated and will
   // return Unauthenticated if no token was provided or it is wrong
-  app.use(passport.authenticate('jwt', { session: false }));
+  // app.use(passport.authenticate('jwt', { session: false }));
   // /novels - Router
   const novelRouter = new Router({ prefix: '/novels' });
   novelRoutes({ router: novelRouter });

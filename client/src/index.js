@@ -1,17 +1,31 @@
-import 'react-app-polyfill/ie11';
-import 'react-app-polyfill/stable';
-// import 'core-js/stable';
 import './scss/index.min.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
 
 import { StaticDataProvider } from './config';
 
+import { rootReducer as reducer } from './redux';
 import MainRouter from './router';
 import ScrollRestoration from './router/scrollRestoration';
+
+const reduxDevTools =
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
+const composeReduxMiddlewares = () => {
+  if (process.env.NODE_ENV === 'development') {
+    return compose(reduxDevTools);
+  } else {
+    return compose();
+    // return compose(applyMiddleware(reduxThunk));
+  }
+};
+
+const store = createStore(reducer, composeReduxMiddlewares());
 
 ReactDOM.render(
   <BrowserRouter>

@@ -1,12 +1,8 @@
 import React, { useContext } from 'react';
 import { Helmet } from 'react-helmet';
-import { useLocomotive } from 'components/animators';
 import { staticDataContext } from 'config';
 
 const Impressum = () => {
-  useLocomotive({
-    el: { current: document.querySelector('.main-content') },
-  });
   const { email, tel, companyName } = useContext(staticDataContext);
 
   return (
