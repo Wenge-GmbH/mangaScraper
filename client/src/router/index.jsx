@@ -1,8 +1,8 @@
 import React, { Component, Suspense } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import { Nav } from './Nav';
-import { Footer } from './Footer';
+// import { Nav } from './Nav';
+// import { Footer } from './Footer';
 import ProtectedRoute from './protectedRoute';
 
 const Home = React.lazy(() => import('pages/Home'));

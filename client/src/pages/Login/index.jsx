@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState } from 'react';
 import { Redirect } from 'react-router';
 import { Helmet } from 'react-helmet';
 
-import authentication from 'services/auth';
-// import { authContext } from 'router/authProvider';
+import { useAuth } from 'services/auth';
+import { useSelector } from 'react-redux';
 
 const Login = () => {
-  // const { setAuth } = useContext(authContext);
-  const [redirect, setRedirect] = useState(false);
   const [form, setForm] = useState({ username: '', pwd: '' });
+  const authentication = useAuth();
+  const { authenticated } = useSelector((state) => state.auth);
 
   const handleChange = (e) => {
     const { target } = e;
@@ -21,13 +21,10 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      let res = await authentication.login({
+      await authentication.login({
         username: form.username,
         password: form.pwd,
       });
-      console.log(res);
-      // setAuth(isValid.valid);
-      setRedirect(true);
     } catch (e) {
       console.log(e);
     }
@@ -42,7 +39,7 @@ const Login = () => {
         <meta name="description" content="Login here" />
       </Helmet>
       <div className="row container-small fh-v justify-center flex-align-center">
-        {redirect ? (
+        {authenticated ? (
           <Redirect to="/" />
         ) : (
           <div className="col">

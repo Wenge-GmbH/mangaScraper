@@ -1,10 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet';
-import { staticDataContext } from 'config';
 
 const Impressum = () => {
-  const { email, tel, companyName } = useContext(staticDataContext);
-
   return (
     <>
       <Helmet>

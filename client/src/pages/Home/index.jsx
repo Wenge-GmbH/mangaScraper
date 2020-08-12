@@ -1,7 +1,9 @@
-import React from "react";
-import { Helmet } from "react-helmet";
+import React from 'react';
+import { Helmet } from 'react-helmet';
+import { useAuth } from 'services/auth';
 
 const Home = () => {
+  const authentication = useAuth();
   return (
     <React.Fragment>
       <Helmet>
@@ -13,13 +15,11 @@ const Home = () => {
       </Helmet>
 
       {/*how to use apsec ratio */}
-      <div style={{ "--aspect-ratio": "16/9" }}>
-        <img
-          alt="test"
-          src={
-            "https://images.unsplash.com/photo-1595866643379-6a06db265a99?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
-          }
-        />
+      <div className="container row justify-center">
+        <h1 className="fw align-center">novels coming soon</h1>
+        <button className="btn" onClick={() => authentication.logout()}>
+          logout
+        </button>
       </div>
     </React.Fragment>
   );

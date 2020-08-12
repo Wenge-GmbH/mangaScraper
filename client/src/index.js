@@ -13,6 +13,7 @@ import { StaticDataProvider } from './config';
 import { rootReducer as reducer } from './redux';
 import MainRouter from './router';
 import ScrollRestoration from './router/scrollRestoration';
+import { AUTH_USER, AUTH_ERROR } from 'redux/types';
 
 const reduxDevTools =
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
@@ -27,14 +28,24 @@ const composeReduxMiddlewares = () => {
 
 const store = createStore(reducer, composeReduxMiddlewares());
 
+const token = localStorage.getItem('token');
+
+// dispatch an action automatically if a JWT is stored in localStorage
+if (token) {
+  store.dispatch({ type: AUTH_USER });
+  // add sth for status redirect
+}
+
 ReactDOM.render(
-  <BrowserRouter>
-    <StaticDataProvider>
-      <ScrollRestoration>
-        <MainRouter />
-      </ScrollRestoration>
-    </StaticDataProvider>
-  </BrowserRouter>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <StaticDataProvider>
+        <ScrollRestoration>
+          <MainRouter />
+        </ScrollRestoration>
+      </StaticDataProvider>
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('root')
 );
 

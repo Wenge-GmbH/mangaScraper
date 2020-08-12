@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect, Route } from 'react-router';
+import { useSelector } from 'react-redux';
 
 // import authentication from '../services/auth';
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
-  const [authenticated, setAuthenticated] = useState(null);
+  const { authenticated } = useSelector((state) => state.auth);
 
   useEffect(() => {
     // authentication.isAuthenticated(window.localStorage.getItem('token'));
