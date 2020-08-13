@@ -1,13 +1,7 @@
-import mongoose from 'mongoose';
-import { LightNovel, NovelChapter } from '../models/LightNovel';
+import { LightNovel } from '../models/LightNovel';
 
 // prefix: "/novels"
 export default ({ router }) => {
-  router.get('/test', async (ctx) => {
-    console.log(ctx.req.user);
-    console.log(ctx.isAuthenticated());
-    ctx.body = 'test';
-  });
   router.get('/', async (ctx) => {
     try {
       const novels = await LightNovel.find(

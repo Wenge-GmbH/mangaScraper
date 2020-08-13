@@ -58,8 +58,7 @@ export default ({ router }) => {
     '/auth',
     passport.authenticate('jwt', { session: false }),
     async (ctx) => {
-      console.log(ctx.req.user);
-      console.log(ctx.isAuthenticated());
+      // console.log(ctx);
       ctx.body = ctx.req.user;
     }
   );

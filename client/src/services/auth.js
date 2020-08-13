@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { AUTH_USER, AUTH_ERROR, UNAUTH_USER } from 'redux/types';
+import { AUTH_USER, AUTH_ERROR, UNAUTH_USER, FETCH_USER } from 'redux/types';
 
 export const useAuth = () => {
   const dispatch = useDispatch();
@@ -28,15 +28,17 @@ export const useAuth = () => {
     dispatch({ type: UNAUTH_USER });
   };
 
-  // const auth = () => {
-  //   try {
-  //     const res = await axios.get()
-  //   } catch (e) {
-
-  //   }
-  // }
+  const auth = async () => {
+    try {
+      const { data } = await axios.get('/auth');
+      dispatch({ type: FETCH_USER, payload: data });
+    } catch (e) {
+      authError(e);
+    }
+  };
 
   return {
+    auth,
     login,
     logout,
     authError,

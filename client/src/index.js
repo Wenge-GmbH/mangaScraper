@@ -4,16 +4,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, compose } from 'redux';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
-
-import { StaticDataProvider } from './config';
 
 import { rootReducer as reducer } from './redux';
 import MainRouter from './router';
 import ScrollRestoration from './router/scrollRestoration';
-import { AUTH_USER, AUTH_ERROR } from 'redux/types';
+import { AUTH_USER } from 'redux/types';
 
 const reduxDevTools =
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
@@ -39,11 +37,9 @@ if (token) {
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <StaticDataProvider>
-        <ScrollRestoration>
-          <MainRouter />
-        </ScrollRestoration>
-      </StaticDataProvider>
+      <ScrollRestoration>
+        <MainRouter />
+      </ScrollRestoration>
     </BrowserRouter>
   </Provider>,
   document.getElementById('root')

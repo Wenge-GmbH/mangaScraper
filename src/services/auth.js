@@ -46,7 +46,7 @@ const jwtLogin = new JwtStrategy(jwtOptions, async (jwt_payload, done) => {
   console.log('payload received', jwt_payload);
 
   try {
-    const user = await User.findById(jwt_payload.id);
+    const user = await User.findById(jwt_payload.id, '-password');
     if (!user) throw new Error('id not found');
     done(null, user);
   } catch (err) {
