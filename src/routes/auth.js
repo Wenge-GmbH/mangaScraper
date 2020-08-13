@@ -49,10 +49,10 @@ export default ({ router }) => {
     }
   });
 
-  router.get('/user', async (ctx) => {
-    const users = await User.find({});
-    ctx.body = users;
-  });
+  // router.get('/user', async (ctx) => {
+  //   const users = await User.find({});
+  //   ctx.body = users;
+  // });
 
   router.get(
     '/auth',

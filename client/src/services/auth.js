@@ -28,6 +28,14 @@ export const useAuth = () => {
     dispatch({ type: UNAUTH_USER });
   };
 
+  // const auth = () => {
+  //   try {
+  //     const res = await axios.get()
+  //   } catch (e) {
+
+  //   }
+  // }
+
   return {
     login,
     logout,

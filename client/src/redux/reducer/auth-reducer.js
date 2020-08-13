@@ -1,8 +1,11 @@
 import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, SIGNUP_VALID } from '../types';
-
+import axios from 'axios';
 export default (state = {}, action) => {
   switch (action.type) {
     case AUTH_USER:
+      axios.defaults.headers.common['Authorization'] = window.localStorage.getItem(
+        'token'
+      );
       return { ...state, error: '', authenticated: true };
     case UNAUTH_USER:
       return { ...state, error: '', authenticated: false };
