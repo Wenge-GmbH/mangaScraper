@@ -8,6 +8,7 @@ const novelChapterSchema = new mongoose.Schema({
 
 const lightNovelSchema = new mongoose.Schema({
   title: String,
+  slug: String,
   author: String,
   status: String,
   coverImg: String, //readmanhua
@@ -18,6 +19,8 @@ const lightNovelSchema = new mongoose.Schema({
   lastChap: String, // last scraped Chapter
   nextChap: String,
   chapterCount: Number,
+  created: { type: Date, default: Date.now },
+  updated: { type: Date, default: Date.now },
   chapters: [
     {
       date: { type: Date, default: Date.now },
@@ -26,6 +29,12 @@ const lightNovelSchema = new mongoose.Schema({
       content: { type: mongoose.Schema.Types.ObjectId, ref: 'NovelChapter' },
     },
   ],
+});
+
+lightNovelSchema.pre('save', function (next) {
+  this.slug = this.title.replace(/ /g, '-').replace(/[^a-zA-Z0-9-_]/g, '');
+  this.updated = Date.now();
+  return next();
 });
 
 lightNovelSchema.pre('validate', function (next) {
