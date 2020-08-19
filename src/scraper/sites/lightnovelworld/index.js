@@ -11,7 +11,7 @@ export default {
       await page.click(btnClass);
     } catch (e) {
       console.log('cookie notice error');
-      console.log(e);
+      // console.log(e);
     }
   },
   getNextChapterURL: async (page) => {

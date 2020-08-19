@@ -24,7 +24,7 @@ export default ({ router }) => {
     ctx.body = { site, url };
 
     scrape({ scrapingFrom: site, url }).then((e) => {
-      console.log(e);
+      // console.log(e);
     });
   });
 };

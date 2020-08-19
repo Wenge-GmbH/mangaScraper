@@ -1,4 +1,5 @@
 import puppeteer from 'puppeteer';
+import { downloadImage } from './helper';
 
 import novelSites from './sites';
 import { LightNovel, NovelChapter } from '../models/LightNovel';
@@ -12,14 +13,27 @@ export const scrape = async ({ scrapingFrom, url }) => {
   if (supportedPages.indexOf(scrapingFrom) === -1) return 'Page not supported';
   const scraper = novelSites[scrapingFrom];
   const generalData = await scrapeGeneralData({ url, scraper });
-  console.log(generalData);
-
+  // console.log(generalData);
   const novel = await LightNovel.findOne({ title: generalData.title });
   if (novel) return console.log('Novel alraedy in Database');
 
   let newNovel;
   try {
     newNovel = new LightNovel({ ...generalData, scrapingFrom });
+    // add page slug
+    newNovel.slug = newNovel.title
+      .replace(/ /g, '-')
+      .replace(/[^a-zA-Z0-9-_]/g, '')
+      .toLowerCase();
+
+    // download and save coverImg
+    const coverImg = await downloadImage({
+      url: generalData.coverImg,
+      path: `client/build/images/novels/`,
+      filename: newNovel.slug,
+    });
+    newNovel.coverImg = coverImg;
+    // return;
     await newNovel.save();
     console.log(newNovel);
   } catch (e) {
@@ -55,6 +69,7 @@ export const scrapeChapters = async ({ firstChapter, scraper, novel }) => {
   await scraper.handleCookiePopup(page);
   let count = 0;
   let nextChap = firstChapter;
+  console.log('scraping');
 
   try {
     while (nextChap) {

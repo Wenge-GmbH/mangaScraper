@@ -15,38 +15,47 @@ export function downloadStuff(images, i) {
   });
 }
 
-// filename == path + filename
-export const download = async (uri, filename) => {
-  const res = await pipeline(got.stream.get(uri), fs.createWriteStream(filename));
-};
-
-const imageTypes = [
-  { mime: 'image/jpeg', fileExtension: 'jpg' },
-  { mime: 'image/png', fileExtension: 'png' },
-  { mime: 'image/gif', fileExtension: 'gif' },
-  { mime: 'image/webp', fileExtension: 'webp' },
-];
-(async () => {
+export const checkCreatePath = async (path) => {
   try {
-    const test = await got.head(
-      'https://www.lightnovelworld.com/bookcover/300x400/00384-supreme-magus-webnovel.jpg'
-    );
-    console.log(test.headers['content-type']);
-    console.log(test.headers['content-length']);
-
-    let imageType = imageTypes.filter(
-      ({ mime }) => mime === test.headers['content-type']
-    );
-    if (imageType.length <= 0) return;
-
-    await download(
-      'https://www.lightnovelworld.com/bookcover/300x400/00384-supreme-magus-webnovel.jpg',
-      `${__dirname}/../manhua/img.${imageType[0].fileExtension}`
-    );
+    await fs.promises.mkdir(path, { recursive: true });
   } catch (e) {
     console.log(e);
   }
+};
 
+const imageTypes = [
+  { mime: 'image/jpeg', ext: 'jpg' },
+  { mime: 'image/png', ext: 'png' },
+  { mime: 'image/gif', ext: 'gif' },
+  { mime: 'image/webp', ext: 'webp' },
+];
+
+// filename == path + filename
+export const downloadImage = async ({ url, path, filename }) => {
+  const head = await got.head(url);
+  // console.log(head.headers['content-type']);
+  // console.log(head.headers['content-length']);
+
+  // check content type for file ending (.jpg)
+  let type = imageTypes.filter(({ mime }) => mime === head.headers['content-type']);
+  if (type.length <= 0) return new Error();
+
+  await checkCreatePath(path);
+  const filepath = `${path}${filename}.${type[0].ext}`;
+  await pipeline(got.stream.get(url), fs.createWriteStream(filepath));
+
+  return filepath.replace('client/build', '');
+};
+
+(async () => {
+  // try {
+  //   await download(
+  //     'https://www.lightnovelworld.com/bookcover/300x400/00384-supreme-magus-webnovel.jpg',
+  //     `${__dirname}/../manhua/img.${imageType[0].fileExtension}`
+  //   );
+  // } catch (e) {
+  //   console.log(e);
+  // }
   // await test.pipe(fs.createWriteStream(`${__dirname}/../manhua/img.jpg`));
   // fs.writeFile(`${__dirname}/../manhua/img.jpg`, test.body, () => {
   //   console.log('asd');

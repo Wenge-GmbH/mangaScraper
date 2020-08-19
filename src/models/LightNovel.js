@@ -32,7 +32,6 @@ const lightNovelSchema = new mongoose.Schema({
 });
 
 lightNovelSchema.pre('save', function (next) {
-  this.slug = this.title.replace(/ /g, '-').replace(/[^a-zA-Z0-9-_]/g, '');
   this.updated = Date.now();
   return next();
 });

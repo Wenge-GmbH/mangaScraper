@@ -30,7 +30,7 @@ const app = new Koa();
     await app.context.agenda.stop();
     console.info('agenda gracefully stooped.');
     await app.context.db.close(false);
-    console.info('MOngoDb connection closed.');
+    console.info('MongoDb connection closed.');
     process.exit(0);
   });
 })();
