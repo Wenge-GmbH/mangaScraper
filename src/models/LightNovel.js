@@ -8,7 +8,7 @@ const novelChapterSchema = new mongoose.Schema({
 
 const lightNovelSchema = new mongoose.Schema({
   title: String,
-  slug: String,
+  slug: { type: String, unique: true, lowercase: true }, // add custom setter {set: () => {}} https://mongoosejs.com/docs/schematypes.html -> All Schema Types
   author: String,
   status: String,
   coverImg: String, //readmanhua

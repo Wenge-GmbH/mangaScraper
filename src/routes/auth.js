@@ -17,7 +17,7 @@ export default ({ router }) => {
       console.log(ctx.isAuthenticated());
 
       const token = await jsonwebtoken.sign({ id: user.id }, process.env.secret);
-      ctx.body = { token };
+      ctx.body = { token, user };
     }
   );
 

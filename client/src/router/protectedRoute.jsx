@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Redirect, Route } from 'react-router';
 import { useSelector } from 'react-redux';
 
-import { useAuth } from 'services/auth';
+import { useAuth } from 'redux/auth';
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
   const { authenticated } = useSelector((state) => state.auth);

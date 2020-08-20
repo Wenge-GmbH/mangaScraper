@@ -6,6 +6,7 @@ import { Switch, Route } from 'react-router-dom';
 import ProtectedRoute from './protectedRoute';
 
 const Dashboard = React.lazy(() => import('pages/Dashboard'));
+const Novel = React.lazy(() => import('pages/Novel'));
 const Login = React.lazy(() => import('pages/Login'));
 
 const Impressum = React.lazy(() => import('pages/Impressum'));
@@ -23,6 +24,7 @@ export default class MainRouter extends Component {
           <div className="main-content">
             <Switch>
               <ProtectedRoute exact path="/" component={Dashboard} />
+              <ProtectedRoute exact path="/:slug" component={Novel} />
               {/* <ProtectedRoute exact path="/novels" component={Home} /> */}
               <Route exact path="/login" component={Login} />
               <Route exact path="/impressum" component={Impressum} />

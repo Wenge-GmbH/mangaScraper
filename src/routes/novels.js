@@ -6,7 +6,7 @@ export default ({ router }) => {
     try {
       const novels = await LightNovel.find(
         {},
-        'title author status coverImg chapterCount'
+        'title author status coverImg chapterCount slug'
       ); // '-chapters -nextChap -lastChap'
       ctx.body = novels;
     } catch (e) {
@@ -15,10 +15,10 @@ export default ({ router }) => {
     }
   });
 
-  router.get('/:id', async (ctx) => {
-    const { id } = ctx.params;
+  router.get('/:slug', async (ctx) => {
+    const { slug } = ctx.params;
     try {
-      const novel = await LightNovel.findById(id); // , '-chapters.content'
+      const novel = await LightNovel.findOne({ slug }); // , '-chapters.content'
       ctx.body = novel;
     } catch (e) {
       console.log(e);

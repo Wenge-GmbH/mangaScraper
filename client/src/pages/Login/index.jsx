@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Redirect } from 'react-router';
 import { Helmet } from 'react-helmet';
 
-import { useAuth } from 'services/auth';
+import { useAuth } from 'redux/auth';
 import { useSelector } from 'react-redux';
 
 const Login = () => {

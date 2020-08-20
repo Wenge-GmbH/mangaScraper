@@ -1,13 +1,11 @@
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
-import { useAuth } from 'services/auth';
-import { useNovels } from './useNovels';
+import { useAuth } from 'redux/auth';
+import { useNovels } from 'redux/novel';
 import { useSelector } from 'react-redux';
 
-// callbakc parameter == (item, key)
-const mapObject = (obj, callback) => {
-  return Object.keys(obj).map((key) => callback(obj[key], key));
-};
+import { mapObject } from 'utils';
+import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
   const authentication = useAuth();
@@ -30,14 +28,17 @@ const Dashboard = () => {
 
       {novels && (
         <div className="row">
-          {mapObject(novels, ({ title, coverImg, status, chapterCount }, key) => (
-            <div className="col-ml-3" key={key}>
-              <img src={coverImg} alt={title} />
-              <h4>{title}</h4>
-              <span>Status: {status}</span>
-              <span>Chapter: {chapterCount}</span>
-            </div>
-          ))}
+          {mapObject(
+            novels,
+            ({ title, coverImg, status, chapterCount, slug }, key) => (
+              <Link to={slug} className="col-ml-3" key={key}>
+                <img src={coverImg} alt={title} />
+                <h4>{title}</h4>
+                <span>Status: {status}</span>
+                <span>Chapter: {chapterCount}</span>
+              </Link>
+            )
+          )}
         </div>
       )}
 

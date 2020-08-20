@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { FETCH_NOVELS } from 'redux/types';
+import { fetchNovels, fetchSingleNovel } from 'redux/novel';
 
 export const useNovels = () => {
   const dispatch = useDispatch();
@@ -9,7 +9,16 @@ export const useNovels = () => {
     try {
       const { data } = await axios.get('/novels');
       console.log(data);
-      dispatch({ type: FETCH_NOVELS, payload: data });
+      dispatch(fetchNovels(data));
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const fetchSingle = async (slug) => {
+    try {
+      const { data } = await axios.get(`/novels/${slug}`);
+      dispatch(fetchSingleNovel(data));
     } catch (e) {
       console.log(e);
     }
@@ -17,5 +26,6 @@ export const useNovels = () => {
 
   return {
     fetch,
+    fetchSingle,
   };
 };
