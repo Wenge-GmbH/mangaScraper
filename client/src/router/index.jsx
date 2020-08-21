@@ -23,12 +23,12 @@ export default class MainRouter extends Component {
         <Suspense fallback={null}>
           <div className="main-content">
             <Switch>
-              <ProtectedRoute exact path="/" component={Dashboard} />
-              <ProtectedRoute exact path="/:slug" component={Novel} />
               {/* <ProtectedRoute exact path="/novels" component={Home} /> */}
               <Route exact path="/login" component={Login} />
               <Route exact path="/impressum" component={Impressum} />
               <Route exact path="/datenschutz" component={Datenschutz} />
+              <ProtectedRoute exact path="/" component={Dashboard} />
+              <ProtectedRoute exact path="/novel/:slug" component={Novel} />
             </Switch>
             {/* <Footer /> */}
           </div>

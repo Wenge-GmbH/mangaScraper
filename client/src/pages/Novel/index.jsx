@@ -10,7 +10,7 @@ const Dashboard = () => {
   const { fetchSingle } = useNovels();
   const { slug } = useParams();
   const novel = useSelector(({ novels }) => novels[slug]);
-  console.log(novel);
+  console.log('novel');
   useEffect(() => {
     if (novel && novel.chapters) return;
     fetchSingle(slug);

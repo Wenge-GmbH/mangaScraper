@@ -10,7 +10,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
 
   useEffect(() => {
     authentication.auth();
-  });
+  }, [authenticated]);
 
   return (
     <Route

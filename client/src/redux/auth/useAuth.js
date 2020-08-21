@@ -6,9 +6,9 @@ import { fetchUser } from 'redux/user';
 export const useAuth = () => {
   const dispatch = useDispatch();
 
-  const login = async (data) => {
+  const login = async (loginData) => {
     try {
-      let { data } = await axios.post('/login', data);
+      let { data } = await axios.post('/login', loginData);
       window.localStorage.setItem('token', data.token);
 
       dispatch(authUser(data.user));

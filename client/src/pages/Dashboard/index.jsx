@@ -31,7 +31,7 @@ const Dashboard = () => {
           {mapObject(
             novels,
             ({ title, coverImg, status, chapterCount, slug }, key) => (
-              <Link to={slug} className="col-ml-3" key={key}>
+              <Link to={'/novel/' + slug} className="col-ml-3" key={key}>
                 <img src={coverImg} alt={title} />
                 <h4>{title}</h4>
                 <span>Status: {status}</span>
