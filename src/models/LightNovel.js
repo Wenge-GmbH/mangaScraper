@@ -25,7 +25,8 @@ const lightNovelSchema = new mongoose.Schema({
     {
       date: { type: Date, default: Date.now },
       title: String,
-      chapter: String, // id -> chapter >182< <-- this
+      chapter: String, // id -> chapter >182< <-- this,
+      number: Number,
       content: { type: mongoose.Schema.Types.ObjectId, ref: 'NovelChapter' },
     },
   ],

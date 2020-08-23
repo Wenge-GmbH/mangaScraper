@@ -3,21 +3,19 @@ import { Helmet } from 'react-helmet';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { useNovels } from 'redux/novel';
-import { arrayOf } from 'prop-types';
 import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
   const { fetchSingle } = useNovels();
   const { slug } = useParams();
   const novel = useSelector(({ novels }) => novels[slug]);
-  console.log('novel');
+  console.log(novel);
   useEffect(() => {
     if (novel && novel.chapters) return;
     fetchSingle(slug);
   }, [novel]);
 
   if (!novel) return null;
-  if (!novel.chapters) return null;
   return (
     <React.Fragment>
       <Helmet>
@@ -35,22 +33,27 @@ const Dashboard = () => {
         <div className="col-md-7">
           <h3>{novel.title}</h3>
           <div className="row">
-            {novel.tags.map((text) => (
-              <span key={text}>{` ${text}- `}</span>
-            ))}
+            {novel.tags &&
+              novel.tags.map((text) => <span key={text}>{` ${text}- `}</span>)}
           </div>
-          <br />
           <p style={{ whiteSpace: 'pre-wrap' }}>{novel.summary}</p>
+          <br />
         </div>
       </div>
       <div className="container">
-        {novel.chapters.map(({ title, chapter, date }) => (
-          <Link to={`${novel.slug}/${chapter}`} key={chapter} className="row card">
-            <span style={{ padding: '0 6px' }}>{chapter}</span>
-            <h5 className="col-md-4 nop">{title}</h5>
-            <span> {date}</span>
-          </Link>
-        ))}
+        {novel.chapters
+          ? novel.chapters.map(({ title, number, chapter, date }) => (
+              <Link
+                to={`${novel.slug}/chapter-${number}`}
+                key={chapter}
+                className="row card"
+              >
+                <span style={{ padding: '0 6px' }}>{chapter}</span>
+                <h5 className="col-md-4 nop">{title}</h5>
+                <span> {date}</span>
+              </Link>
+            ))
+          : null}
       </div>
     </React.Fragment>
   );

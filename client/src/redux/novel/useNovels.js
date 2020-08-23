@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { fetchNovels, fetchSingleNovel } from 'redux/novel';
+import { fetchNovels, fetchSingleNovel, fetchChapter } from 'redux/novel';
 
 export const useNovels = () => {
   const dispatch = useDispatch();
@@ -24,8 +24,13 @@ export const useNovels = () => {
     }
   };
 
+  const fetchOneChapter = async ({ slug, chapter }) => {
+    return await axios.get(`/novels/${slug}/${chapter}`);
+  };
+
   return {
     fetch,
     fetchSingle,
+    fetchOneChapter,
   };
 };

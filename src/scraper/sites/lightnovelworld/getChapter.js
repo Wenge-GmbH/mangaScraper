@@ -1,6 +1,9 @@
 export default async (page) => {
   const result = await page.evaluate(() => {
-    const title = document.querySelector('.titles h2').textContent.trim();
+    const title = document
+      .querySelector('.titles h2')
+      .textContent.replace(/Chapter (([1-9])*):/g, '')
+      .trim();
     const nextChap = document.querySelector('.nextchap');
     const content = document
       .querySelector('.chapter-content')

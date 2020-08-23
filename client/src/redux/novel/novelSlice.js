@@ -26,12 +26,29 @@ const { actions, reducer } = createSlice({
     // authUser: (state, action) => ,
     fetchNovels: (state, action) => {
       const data = map(action.payload, 'slug');
+      console.log(data);
       return data;
     },
     fetchSingleNovel: (state, { payload }) => {
+      // if (!state[payload.slug] || !state[payload.slug].chapters) {
       state[payload.slug] = payload;
+      //   return;
+      // }
+
+      // const { chapters, ...data } = payload;
+      // state[payload.slug] = { ...state[payload.slug], ...data };
+      // chapters.forEach((chapter) => {
+      //   state[payload.slug].chapters[chapter.chapter] = {
+      //     ...state[payload.slug].chapters[chapter.chapter],
+      //     ...chapter,
+      //   };
+      // });
     },
+    // fetchChapter: (state, action) => {
+    //   state[payload.slug].chapters[chapter.chapter];
+    //   return;
+    // },
   },
 });
-export const { fetchNovels, fetchSingleNovel } = actions;
+export const { fetchNovels, fetchSingleNovel, fetchChapter } = actions;
 export default reducer;

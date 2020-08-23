@@ -84,6 +84,7 @@ export const scrapeChapters = async ({ firstChapter, scraper, novel }) => {
         title,
         chapter: chapterNumber,
         content: chapterContent,
+        number: novel.chapters.length + 1,
       };
       novel.chapters.push(addThisToChapterArray);
 

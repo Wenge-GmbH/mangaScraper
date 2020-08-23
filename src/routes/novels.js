@@ -25,17 +25,26 @@ export default ({ router }) => {
       ctx.throw(404, 'novel not found');
     }
   });
-
-  router.get('/:id/:chapterId', async (ctx) => {
-    const { id, chapterId } = ctx.params;
-
+  router.delete('/:slug', async (ctx) => {
+    const { slug } = ctx.params;
     try {
-      const chapter = await LightNovel.findOne(
+      const novel = await LightNovel.deleteOne({ slug }); // , '-chapters.content'
+      ctx.body = novel;
+    } catch (e) {
+      console.log(e);
+      ctx.throw(404, 'novel not found');
+    }
+  });
+
+  router.get('/:slug/:chapterNum', async (ctx) => {
+    const { slug: slugParam, chapterNum } = ctx.params;
+    try {
+      const { title, slug, chapters, chapterCount } = await LightNovel.findOne(
         {
-          _id: id,
-          'chapters.content': chapterId,
+          slug: slugParam,
+          'chapters.number': chapterNum,
         },
-        'chapters.$ title'
+        'chapters.$ title slug chapterCount'
       )
         .populate({
           path: 'chapters',
@@ -46,10 +55,11 @@ export default ({ router }) => {
         })
         .lean()
         .exec();
-
       ctx.body = {
-        title: chapter.title,
-        content: chapter.chapters[0],
+        title,
+        slug,
+        chapter: { ...chapters[0], content: chapters[0].content.content },
+        chapterCount,
       };
     } catch (e) {
       console.log(e);

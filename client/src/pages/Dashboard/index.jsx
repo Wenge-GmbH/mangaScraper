@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
-import { useAuth } from 'redux/auth';
 import { useNovels } from 'redux/novel';
 import { useSelector } from 'react-redux';
 
@@ -8,7 +7,6 @@ import { mapObject } from 'utils';
 import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
-  const authentication = useAuth();
   const novelActions = useNovels();
   const novels = useSelector(({ novels }) => novels);
 
@@ -41,14 +39,6 @@ const Dashboard = () => {
           )}
         </div>
       )}
-
-      {/*how to use apsec ratio */}
-      <div className="container row justify-center">
-        <h1 className="fw align-center">novels coming soon</h1>
-        <button className="btn" onClick={() => authentication.logout()}>
-          logout
-        </button>
-      </div>
     </React.Fragment>
   );
 };
