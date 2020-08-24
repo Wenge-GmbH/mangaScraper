@@ -27,7 +27,7 @@ const Dashboard = () => {
       </Helmet>
 
       <div className="container row">
-        <div className="col-md-5">
+        <div className="col-md-5 ">
           <img src={novel.coverImg} />
         </div>
         <div className="col-md-7">

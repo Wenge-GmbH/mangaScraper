@@ -1,14 +1,11 @@
-manga {
-  the-ghostly-doctor { // manga slug 
-    chapter 1-182
-    1,
-    2,
-    3,
-    4,
-    5,
-    usw... {
-      img1-whatever
-    }
-  }
-}
 
+
+https://www.lightnovelworld.com/novel/the-desolate-era-web-novel
+https://www.lightnovelworld.com/novel/overgeared-web-novel
+https://www.lightnovelworld.com/novel/rebirth-of-the-thief-who-roamed-the-world
+https://www.lightnovelworld.com/novel/dual-cultivation-web-novel
+https://www.lightnovelworld.com/novel/stealing-the-heavens
+https://www.lightnovelworld.com/novel/birth-of-the-demonic-sword-web-novel
+https://www.lightnovelworld.com/novel/a-returners-magic-should-be-special-webnovel
+https://www.lightnovelworld.com/novel/death-is-the-only-ending-for-the-villain
+https://www.lightnovelworld.com/novel/warlock-of-the-magus-world
