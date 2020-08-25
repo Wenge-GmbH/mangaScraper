@@ -17,5 +17,5 @@ export default ({ app }) => {
       flush: require('zlib').Z_SYNC_FLUSH,
     })
   );
-  app.use(serve(`client/build`));
+  app.use(serve(`public`));
 };
