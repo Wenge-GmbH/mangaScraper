@@ -30,7 +30,6 @@
     "koa-router": "^9.1.0",
     "koa-static": "^5.0.0",
     "mangadex-api": "^4.6.3",
-    "mangadex-full-api": "^4.2.0",
     "mongoose": "^5.9.25",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
