@@ -1,0 +1,16 @@
+
+// base URL/Docs
+https://api.mangadex.org/v2/
+
+
+// get manga
+https://api.mangadex.org/v2/manga/22422
+
+// get chapters
+https://api.mangadex.org/v2/manga/22422/chapters
+
+// get chapter
+https://api.mangadex.org/v2/chapter/1194736
+
+// get image
+https://mangadex.org/data/63ccea9b04eeda8439039c589ee4fe51/1-39bf08acaeb213bdde8a110fc7f0aebcab9a631f82a504b6111ada383391c0bc.png
