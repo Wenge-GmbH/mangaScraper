@@ -19,7 +19,9 @@ import {Mangadex} from 'mangadex-api';
   // https://mangadex.org/search?tag_mode_exc=any&tag_mode_inc=all&tags=2&title=tensei
   try {
     // await client.agent.saveSession('./session.txt')
-    await client.agent.loginWithSession('./session.txt')
+    const test = await client.agent.loginWithSession('./session.txt')
+    console.log(client.agent);
+    console.log(await client.agent.saveSession('./session.txt'));
     // console.log(client);
 
     // use {params: {}} for url parameters like p (page)
