@@ -5,6 +5,7 @@ import { useAuth } from 'redux/auth';
 import { useSelector } from 'react-redux';
 import { useTheme } from 'styled-components';
 import { Button } from 'ui/Button';
+import { SearchButton } from 'components/Search';
 
 export const Nav = () => {
   const { colorScheme, changeColorScheme } = useTheme();
@@ -31,6 +32,7 @@ export const Nav = () => {
           <h2 className="nom">Logo</h2>
         </Link>
         <div className={`nav row flex-align-center ${toggleOpen}`}></div>
+        <SearchButton />
         <Button onClick={changeColorScheme}>{colorScheme}</Button>
         <button className="btn" onClick={() => authentication.logout()}>
           logout

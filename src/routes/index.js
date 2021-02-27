@@ -7,7 +7,6 @@ import jobsRoutes from './jobs';
 import authRoutes from './auth';
 import passport from 'koa-passport';
 
-
 // TODO -> add /api with nested Routes
 // https://github.com/koajs/router/blob/HEAD/API.md#nested-routers
 export default ({ app }) => {
@@ -39,7 +38,7 @@ export default ({ app }) => {
   app.use(scrapeRouter.allowedMethods());
 
   // /manga - Router
-  const mangaRouter = new Router({ prefix: '/manga' });
+  const mangaRouter = new Router({ prefix: '/api/manga' });
   mangaRoutes({ router: mangaRouter });
 
   app.use(mangaRouter.routes());

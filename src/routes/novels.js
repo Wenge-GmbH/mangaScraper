@@ -44,7 +44,7 @@ export default ({ router }) => {
           slug: slugParam,
           'chapters.number': chapterNum,
         },
-        'chapters.$ title slug chapterCount'
+        'chapters title slug chapterCount'
       )
         .populate({
           path: 'chapters',

@@ -39,6 +39,21 @@ const Dashboard = () => {
           )}
         </div>
       )}
+      {novels && (
+        <div className="row">
+          {mapObject(
+            novels,
+            ({ title, coverImg, status, chapterCount, slug }, key) => (
+              <Link to={'/novel/' + slug} className="col-ml-3 col-lg-2" key={key}>
+                <img src={coverImg} alt={title} />
+                <h4>{title}</h4>
+                <span>Status: {status}</span>
+                <span>Chapter: {chapterCount}</span>
+              </Link>
+            )
+          )}
+        </div>
+      )}
     </React.Fragment>
   );
 };
