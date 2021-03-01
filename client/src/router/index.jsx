@@ -12,25 +12,29 @@ const SearchPage = React.lazy(() => import('pages/Search'));
 const Novel = React.lazy(() => import('pages/Novel'));
 const Chapter = React.lazy(() => import('pages/Chapter'));
 const Login = React.lazy(() => import('pages/Login'));
+const MangaSingle = React.lazy(() => import('pages/MangaSingle'));
+const MangaChapter = React.lazy(() => import('pages/MangaChapter'));
 
 const Error404 = React.lazy(() => import('pages/Error404'));
-const Impressum = React.lazy(() => import('pages/Impressum'));
-const Datenschutz = React.lazy(() => import('pages/Datenschutz'));
 
-export default class MainRouter extends Component {
-  render() {
-    return (
-      <CustomThemeProvider>
-        <div className="main-content__wrapper">
-          <Search />
-          <div className="main-content">
+const MainRouter = () => {
+  return (
+    <CustomThemeProvider>
+      <div className="main-content__wrapper">
+        <Search />
+        <div className="main-content">
+          <div className="bg-white">
             <Suspense fallback={null}>
               <Nav />
               <Switch>
                 {/* <ProtectedRoute exact path="/novels" component={Home} /> */}
                 <Route exact path="/login" component={Login} />
-                <Route exact path="/impressum" component={Impressum} />
-                <Route exact path="/datenschutz" component={Datenschutz} />
+                <ProtectedRoute exact path="/manga/:id" component={MangaSingle} />
+                <ProtectedRoute
+                  exact
+                  path="/manga/:id/:chapter_id"
+                  component={MangaChapter}
+                />
                 <ProtectedRoute exact path="/novel/:slug" component={Novel} />
                 <ProtectedRoute
                   exact
@@ -45,7 +49,9 @@ export default class MainRouter extends Component {
             </Suspense>
           </div>
         </div>
-      </CustomThemeProvider>
-    );
-  }
-}
+      </div>
+    </CustomThemeProvider>
+  );
+};
+
+export default MainRouter;

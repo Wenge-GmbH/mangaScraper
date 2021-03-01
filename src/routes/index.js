@@ -6,6 +6,8 @@ import mangaRoutes from './manga';
 import jobsRoutes from './jobs';
 import authRoutes from './auth';
 import passport from 'koa-passport';
+import axios from 'axios';
+import { PassThrough } from 'stream';
 
 // TODO -> add /api with nested Routes
 // https://github.com/koajs/router/blob/HEAD/API.md#nested-routers
@@ -13,6 +15,15 @@ export default ({ app }) => {
   const router = new Router();
   router.get('/', (ctx) => {
     ctx.body = 'nth 2 see here';
+  });
+  router.get('/proxy', async (ctx) => {
+    const { url } = ctx.request.query;
+    console.log('proxy');
+    const res = await axios({ method: 'get', url, responseType: 'stream' });
+
+    ctx.body = res.data.on('error', ctx.onerror).pipe(PassThrough());
+
+    // ctx.body = 'nth 2 see here';
   });
 
   jobsRoutes({ router });

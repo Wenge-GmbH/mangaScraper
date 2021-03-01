@@ -20,9 +20,9 @@ const Dashboard = () => {
     <React.Fragment>
       <Helmet>
         <html lang="de" />
-        <title>Home | </title>
+        <title>Novel | </title>
         <meta charset="utf-8" />
-        <meta name="author" content="Synelution GmbH Klagenfurt" />
+        <meta name="author" content="" />
         <meta name="description" content="" />
       </Helmet>
 
